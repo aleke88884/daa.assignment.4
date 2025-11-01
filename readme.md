@@ -12,12 +12,14 @@ This project implements graph algorithms for scheduling city-service tasks with 
 - Builds condensation graph (DAG of components)
 
 ### 2. Topological Sorting
+
 - Kahn's algorithm (BFS-based) for topological ordering
 - DFS-based alternative implementation
 - Derives valid execution order for tasks
 - Detects cycles in graphs
 
 ### 3. Shortest & Longest Paths in DAG
+
 - Single-source shortest paths using topological ordering
 - Critical path (longest path) computation
 - Path reconstruction from source to any vertex
