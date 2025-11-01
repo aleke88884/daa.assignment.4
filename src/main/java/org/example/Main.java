@@ -1,9 +1,5 @@
 package org.example;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-
-
 import com.google.gson.*;
 import java.io.*;
 import java.nio.file.*;
@@ -11,18 +7,27 @@ import java.util.*;
 
 /**
  * Main application for Smart City/Campus Scheduling.
- * Processes task dependency graphs and computes optimal schedules.
+ * Works both from IDE (manual input) and terminal (argument mode).
  */
 public class Main {
 
     public static void main(String[] args) {
-        if (args.length < 1) {
-            System.out.println("Usage: java Main <path-to-tasks.json>");
-            System.out.println("Example: java Main data/tasks.json");
-            return;
-        }
+        String filename;
 
-        String filename = args[0];
+        // Если аргумент передан — используем его
+        if (args.length >= 1) {
+            filename = args[0];
+        } else {
+            // Если запущено из IDE (или без аргументов), попросим вручную ввести путь
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Enter path to JSON file (e.g., data/tasks.json): ");
+            filename = scanner.nextLine().trim();
+
+            if (filename.isEmpty()) {
+                System.out.println("No file path provided. Exiting.");
+                return;
+            }
+        }
 
         try {
             processTaskGraph(filename);
@@ -33,7 +38,7 @@ public class Main {
     }
 
     public static void processTaskGraph(String filename) throws IOException {
-        System.out.println("=== Smart City/Campus Task Scheduler ===\n");
+        System.out.println("\n=== Smart City/Campus Task Scheduler ===");
         System.out.println("Processing file: " + filename);
 
         // Load graph from JSON
@@ -75,17 +80,13 @@ public class Main {
         }
 
         System.out.println("Topological order of SCCs: " + sccOrder);
-
-        // Derive original task order
         List<Integer> taskOrder = TopologicalSort.deriveTaskOrder(sccOrder, sccs);
         System.out.println("Derived task execution order: " + taskOrder);
         System.out.println("Metrics: " + topoMetrics);
         System.out.println();
 
-        // Step 4: Shortest Paths in DAG
+        // Step 4: Shortest Paths
         System.out.println("=== Step 4: Shortest Paths in Condensation DAG ===");
-
-        // Find source SCC (the one containing original source if specified)
         int sourceScc = 0;
         if (data.source != -1) {
             for (int i = 0; i < sccs.size(); i++) {
