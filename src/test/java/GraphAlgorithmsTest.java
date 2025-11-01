@@ -24,6 +24,26 @@ public class GraphAlgorithmsTest {
         assertEquals(4, sccs.size(), "Simple DAG should have 4 SCCs");
     }
 
+
+    @Test
+    public void testMultipleSCCsConnected() {
+        // (0->1->0), (2->3->2), 1->2
+        Graph graph = new Graph(4, true);
+        graph.addEdge(0, 1, 1);
+        graph.addEdge(1, 0, 1);
+        graph.addEdge(1, 2, 1);
+        graph.addEdge(2, 3, 1);
+        graph.addEdge(3, 2, 1);
+
+        Metrics metrics = new Metrics();
+        TarjanSCC tarjan = new TarjanSCC(graph, metrics);
+        List<List<Integer>> sccs = tarjan.findSCCs();
+
+        assertEquals(2, sccs.size(), "Should have 2 SCCs connected by edge");
+    }
+
+
+
     @Test
     public void testSimpleCycle() {
         // Cycle: 0->1->2->0

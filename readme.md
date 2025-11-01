@@ -223,11 +223,3 @@ Metrics: time=0.028ms, relaxations=2
 4. **Condensation graph** simplifies analysis of complex dependency structures
 5. For large graphs (>1000 nodes), consider parallel processing for independent SCCs
 
-## Authors
-
-Assignment 4 - Graph Algorithms
-Course: Data Structures & Algorithms
-
-## License
-
-Educational use only.
