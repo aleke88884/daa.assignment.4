@@ -65,6 +65,7 @@ public class Metrics {
     }
 
     public void reset() {
+
         startTime = 0;
         endTime = 0;
         dfsVisits = 0;
@@ -72,6 +73,7 @@ public class Metrics {
         relaxations = 0;
         pushes = 0;
         pops = 0;
+
     }
 
     @Override

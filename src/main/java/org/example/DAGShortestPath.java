@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class DAGShortestPath {
+
     private final Graph graph;
     private final Metrics metrics;
 
@@ -121,6 +122,7 @@ public class DAGShortestPath {
                 }
             }
         }
+
 
         metrics.stopTimer();
 

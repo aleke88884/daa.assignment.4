@@ -9,6 +9,8 @@ public class DataSetGenerator {
     private static final Random random = new Random(42);
 
     public static void main(String[] args) {
+
+
         String outputDir = "data/";
         new File(outputDir).mkdirs();
 
