@@ -1,4 +1,7 @@
-package org.example;
+package org.example.graph.topo;
+
+import org.example.Graph;
+import org.example.Metrics;
 
 import java.util.*;
 

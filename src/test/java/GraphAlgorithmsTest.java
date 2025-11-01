@@ -1,4 +1,7 @@
 import org.example.*;
+import org.example.graph.dagscp.DAGShortestPath;
+import org.example.graph.scc.TarjanSCC;
+import org.example.graph.topo.TopologicalSort;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

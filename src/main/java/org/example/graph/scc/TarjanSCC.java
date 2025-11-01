@@ -1,5 +1,8 @@
-package org.example;
+package org.example.graph.scc;
 
+
+import org.example.Graph;
+import org.example.Metrics;
 
 import java.util.*;
 
